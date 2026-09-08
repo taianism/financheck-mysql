@@ -50,10 +50,12 @@ financheck-mysql
 │ ├── padronizacao.py
 │ ├── escolha_k.py
 │ ├── kmeans_final.py
-│ └── visualizacao_clusters.py
+│ ├── visualizacao_clusters.py
+│ └── carregar_clusters_mysql.py
 │
 ├── docs/
-│ └── analise_clusters.md
+│ ├── analise_clusters.md
+│ └── documentacao_projeto.md
 │
 └── README.md
 
@@ -65,6 +67,9 @@ Em seguida, abra o arquivo `sql/ddl.sql` e execute todo o script. Ao final da ex
 
 Para a etapa de mineracao de dados, dentro da pasta `mineracao/`, execute os scripts Python na ordem: `padronizacao.py`, `escolha_k.py`, `kmeans_final.py`, `visualizacao_clusters.py`. Requer as bibliotecas pandas, scikit-learn e matplotlib (`pip install pandas scikit-learn matplotlib`).
 
-## Autor
+Para persistir o resultado da segmentacao no banco de dados, execute `sql/clusters.sql` no Workbench (cria a tabela `cluster_usuario`) e em seguida `mineracao/carregar_clusters_mysql.py` (requer `mysql-connector-python` e `python-dotenv`, alem de um arquivo `.env` na raiz do projeto com a variavel `DB_PASSWORD`).
 
-Projeto desenvolvido por **Taiani** como atividade academica da disciplina de Banco de Dados.
+## Documentacao adicional
+
+- [`docs/analise_clusters.md`](docs/analise_clusters.md): analise exploratoria, padronizacao, escolha do numero de clusters e interpretacao dos perfis identificados.
+- [`docs/documentacao_projeto.md`](docs/documentacao_projeto.md): requisitos funcionais e nao funcionais, estimativa de custos, diagrama UML de casos de uso e atualizacao do dicionario de dados.
