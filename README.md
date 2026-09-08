@@ -33,31 +33,36 @@ Documentacao completa da analise em [`docs/analise_clusters.md`](docs/analise_cl
 - Python (pandas, scikit-learn, matplotlib)
 
 ## Estrutura do projeto
+
+## Estrutura do projeto
+
+```
 financheck-mysql
 |
 ├── sql/
-│ ├── ddl.sql
-│ └── clusters.sql
+│   ├── ddl.sql
+│   └── clusters.sql
 │
 ├── dados/
-│ ├── financheck_analise.csv
-│ ├── financheck_padronizado.csv
-│ ├── financheck_com_clusters.csv
-│ ├── escolha_k.png
-│ └── visualizacao_clusters.png
+│   ├── financheck_analise.csv
+│   ├── financheck_padronizado.csv
+│   ├── financheck_com_clusters.csv
+│   ├── escolha_k.png
+│   └── visualizacao_clusters.png
 │
 ├── mineracao/
-│ ├── padronizacao.py
-│ ├── escolha_k.py
-│ ├── kmeans_final.py
-│ ├── visualizacao_clusters.py
-│ └── carregar_clusters_mysql.py
+│   ├── padronizacao.py
+│   ├── escolha_k.py
+│   ├── kmeans_final.py
+│   ├── visualizacao_clusters.py
+│   └── carregar_clusters_mysql.py
 │
 ├── docs/
-│ ├── analise_clusters.md
-│ └── documentacao_projeto.md
+│   ├── analise_clusters.md
+│   └── documentacao_projeto.md
 │
 └── README.md
+```
 
 ## Como utilizar
 
