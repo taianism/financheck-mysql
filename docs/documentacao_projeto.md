@@ -71,3 +71,34 @@ Esta documentacao complementa os demais artefatos do projeto, disponiveis no rep
 - Mineracao de dados: `docs/analise_clusters.md`, com todo o processo de analise exploratoria, padronizacao, escolha de K, execucao do K-Means e interpretacao dos resultados.
 - Scripts de mineracao: pasta `mineracao/`.
 - Visualizacoes: `dados/escolha_k.png` e `dados/visualizacao_clusters.png`.
+
+
+## 6. Atualizacao do Dicionario de Dados (Modelo Logico)
+
+Durante a construcao do modelo fisico, a tabela `meta_financeira` foi implementada com campos adicionais em relacao ao dicionario de dados apresentado na primeira entrega, necessarios para o correto funcionamento do controle de metas financeiras. A tabela abaixo atualiza a especificacao original.
+
+| Tabela | Campo | Tipo de Dados | Restricoes / Constraints |
+|---|---|---|---|
+| meta_financeira | id_meta | INT | PK, AUTO_INCREMENT |
+| meta_financeira | id_usuario | INT | FK (usuario.id_usuario) |
+| meta_financeira | titulo_meta | VARCHAR(150) | NOT NULL |
+| meta_financeira | descricao_meta | VARCHAR(255) | - |
+| meta_financeira | valor_objetivo | DECIMAL(12,2) | NOT NULL |
+| meta_financeira | valor_atual | DECIMAL(12,2) | NOT NULL, DEFAULT 0 |
+| meta_financeira | data_inicio | DATE | NOT NULL |
+| meta_financeira | data_limite | DATE | NOT NULL |
+| meta_financeira | status_meta | ENUM('EM_ANDAMENTO','CONCLUIDA','CANCELADA') | NOT NULL, DEFAULT 'EM_ANDAMENTO' |
+
+Os campos `valor_atual`, `data_inicio` e `status_meta` foram incorporados para permitir o acompanhamento continuo do progresso da meta e a segmentacao de perfis financeiros realizada na etapa de mineracao de dados (ver secao 4 de `docs/analise_clusters.md`), que depende diretamente do campo `status_meta` para validacao cruzada dos clusters formados.
+
+Adicionalmente, a tabela `cluster_usuario`, criada na segunda entrega para persistir o resultado da mineracao de dados, complementa o modelo logico original:
+
+| Tabela | Campo | Tipo de Dados | Restricoes / Constraints |
+|---|---|---|---|
+| cluster_usuario | id_usuario | INT | PK, FK (usuario.id_usuario) |
+| cluster_usuario | cluster | INT | NOT NULL |
+| cluster_usuario | total_receitas | DECIMAL(10,2) | - |
+| cluster_usuario | total_despesas | DECIMAL(10,2) | - |
+| cluster_usuario | saldo | DECIMAL(10,2) | - |
+| cluster_usuario | percentual_meta | DECIMAL(5,2) | - |
+| cluster_usuario | data_execucao | DATETIME | DEFAULT CURRENT_TIMESTAMP |
